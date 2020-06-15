@@ -229,12 +229,3 @@ echo "TS latency mean: ${TS_MEAN}" >> /tmp/benchmark/report.txt
 echo "TS error rate: ${TS_ERROR_RATE}%" >> /tmp/benchmark/report.txt
 
 cat /tmp/benchmark/report.txt
-
-if [[ ! -z "${UPLOAD}" ]]; then
-    TODAY=`date +"%y-%m-%d_%H"`
-    echo "Saving on S3 bucket on s3://benchmarkai-metrics-prod/daily/mms/${HW_TYPE}/${TODAY}/${MODEL}"
-
-    aws s3 cp /tmp/benchmark/ s3://benchmarkai-metrics-prod/daily/mms/${HW_TYPE}/${TODAY}/${MODEL} --recursive
-
-    echo "Files uploaded"
-fi
